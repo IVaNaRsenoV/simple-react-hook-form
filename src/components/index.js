@@ -1,2 +1,1 @@
-export { SetOfInputs } from "./Input";
-export { Errors } from "./error";
+export { Input } from "./Input";
