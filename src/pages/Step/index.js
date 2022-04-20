@@ -6,12 +6,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { actionCreatorStep } from "../../redux/actionCreator";
 import { Input } from "../../components";
+import styles from "./Step.module.scss";
 
 const schema = yup.object().shape({
   email: yup.string().email().min(4).max(100).required(),
 });
 
-export const Step = withStep(({ way, step, children }) => {
+export const Step = withStep(({ way, step, type, children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,16 +27,22 @@ export const Step = withStep(({ way, step, children }) => {
   } = methods;
 
   const onSubmit = (data) => {
-    dispatch(actionCreatorStep(step, data));
+    dispatch(actionCreatorStep(data));
+    // dispatch({ type: `STEP`, payload: data });
     console.log(data);
     navigate(`${way}`);
   };
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input name={"email"} />
-        {errors.email && <h3>{errors.email.message}</h3>}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles.form__container}
+      >
+        <Input name={type} />
+        {errors.email && (
+          <h3 className={styles.error}>{errors.email.message}</h3>
+        )}
         {children}
       </form>
     </FormProvider>

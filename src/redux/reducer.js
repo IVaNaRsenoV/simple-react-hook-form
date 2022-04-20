@@ -3,40 +3,35 @@ const stepArray = [
     id: 1,
     path: "/step1",
     way: "/step2",
-    step: 1,
+    step: "Email",
+    type: "email",
   },
   {
     id: 2,
     path: "/step2",
     way: "/step3",
-    step: 2,
+    step: "Password",
+    type: "password",
   },
   {
     id: 3,
     path: "/step3",
     way: "/result",
-    step: 3,
+    step: "Confirm password",
+    type: "password",
   },
 ];
 
 const initialState = {
   steps: stepArray,
-  step1: "",
-  step2: "",
-  step3: "",
+  step: "",
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case "STEP1":
-      // debugger;
-      return { ...state, step1: payload };
-    case "STEP2":
-      // debugger;
-      return { ...state, step2: payload };
-    case "STEP3":
-      // debugger;
-      return { ...state, step3: payload };
+    case "STEP":
+      debugger;
+      return { ...state, step: payload };
   }
   return state;
 };

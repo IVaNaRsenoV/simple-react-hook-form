@@ -1,3 +1,3 @@
-export const actionCreatorStep = (step, data) => {
-  return { type: `STEP${step}`, payload: data };
+export const actionCreatorStep = (data) => {
+  return { type: "STEP", payload: data };
 };

@@ -1,23 +1,41 @@
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import styles from "./Result.module.scss";
 
 export const Result = () => {
   const navigate = useNavigate();
   const result = useSelector((state) => state);
+
+  const [data, setData] = useState(result.step);
+
   const getSteps = () => {
-    const steps = {
-      step1: result.step1,
-      step2: result.step2,
-      step3: result.step3,
-    };
-    return console.log(steps);
+    setData(result.step);
+    return console.log(data);
   };
 
   return (
-    <>
-      <h1>Result</h1>
-      <button onClick={getSteps}>Получить результат!</button>
-      <button onClick={() => navigate(-1)}>Назад</button>
-    </>
+    <div className={styles.resultContainer}>
+      <div className={styles.resultHeader}>
+        Result
+        {
+          <div>
+            <p>
+              <span style={{ fontWeight: "bold" }}>Email:</span> {data.email}
+            </p>
+            <p>
+              <span style={{ fontWeight: "bold" }}>Password:</span>{" "}
+              {data.password}
+            </p>
+          </div>
+        }
+      </div>
+      <button onClick={getSteps} className={styles.getResult}>
+        Получить результат!
+      </button>
+      <button onClick={() => navigate(-1)} className={styles.backResult}>
+        Назад
+      </button>
+    </div>
   );
 };

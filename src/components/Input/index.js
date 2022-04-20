@@ -1,4 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
+import styles from "./Input.module.scss";
 
 export const Input = ({ name }) => {
   const { register, control } = useFormContext();
@@ -7,7 +8,9 @@ export const Input = ({ name }) => {
       control={control}
       name={name}
       render={() => {
-        return <input type="text" {...register(name)} />;
+        return (
+          <input className={styles.field} type={name} {...register(name)} />
+        );
       }}
     />
   );

@@ -1,1 +1,1 @@
-export const Header = () => <h1>Форма для регистрации</h1>;
+export const Header = (props) => <h1 {...props}>Форма для регистрации</h1>;
